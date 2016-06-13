@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" style="height:100%;">
+<head>
+    <meta charset="UTF-8">
+    <title>test</title>
+</head>
+<body style="height: 100%">
+<canvas id="test" style="height: 100%">
+
+</canvas>
+<script>
+    var WINDOW_HEIGHT = document.body.clientHeight;
+    var WINDOW_WIDTH = document.body.clientWidth;
+    var colors = ["rgb(208, 101, 3)","rgb(208, 101, 3)","rgb(233, 147, 26)","rgb(22, 145, 190)"];
+
+    var balloons=[
+        {x:Math.round(WINDOW_WIDTH/3),y:WINDOW_HEIGHT,R:20,color:colors[Math.floor(Math.random()*colors.length)],},
+        {x:200,y:WINDOW_HEIGHT,R:20,color:colors[Math.floor(Math.random()*colors.length)],},
+        {x:300,y:WINDOW_HEIGHT,R:20,color:colors[Math.floor(Math.random()*colors.length)],},
+        {x:400,y:WINDOW_HEIGHT,R:20,color:colors[Math.floor(Math.random()*colors.length)],},
+        {x:500,y:WINDOW_HEIGHT,R:20,color:colors[Math.floor(Math.random()*colors.length)],},
+        {x:600,y:WINDOW_HEIGHT,R:20,color:colors[Math.floor(Math.random()*colors.length)],},
+        {x:700,y:WINDOW_HEIGHT,R:20,color:colors[Math.floor(Math.random()*colors.length)],},
+    ]
+    window.onload = function () {
+        var canvas = document.getElementById("test");
+        var cxt = canvas.getContext("2d");
+        canvas.height = WINDOW_HEIGHT;
+        canvas.width = WINDOW_WIDTH;
+        for(var i=0;i<balloons.length;i++){
+
+            console.log(balloons[i].x+" "+balloons[i].y+" "+balloons[i].R+" ")
+            //cxt.clearRect(0,0,WINDOW_WIDTH,WINDOW_HEIGHT);
+            cxt.fillStyle = balloons[i].color;
+
+            cxt.beginPath();
+            //console.log(balloons[0].x+" "+balloons[0].y+" "+balloons[0].R+" ");
+            cxt.arc(balloons[i].x,balloons[i].y,balloons[i].R,0,2*Math.PI);
+            cxt.closePath();
+            cxt.fill();
+
+        }
+    }
+</script>
+</body>
+</html>

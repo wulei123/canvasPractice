@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>七巧板</title>
+    <style type="text/css">
+        div{
+            height:800px;
+            width:800px;
+            margin:0 auto;
+            margin:0 auto;
+        }
+        canvas{
+            border-radius: 5px;
+            box-shadow: 2px 5px 10px gainsboro ;
+        }
+    </style>
+</head>
+<body>
+<div >
+    <canvas id="qiqiao">
+        您的浏览器不支持
+    </canvas>
+</div>
+<script>
+    var qiqiao = [
+        {p: [{x: 0, y: 0}, {x: 800, y: 0}, {x: 400, y: 400}], color: "orange"},
+        {p: [{x: 0, y: 0}, {x: 400, y: 400}, {x: 0, y: 800}], color: "blue"},
+        {p: [{x: 800, y: 0}, {x: 800, y: 400}, {x: 600, y: 600}, {x: 600, y: 200}], color: "red"},
+        {p: [{x: 600, y: 200}, {x: 600, y: 600}, {x: 400, y: 400}], color: "gray"},
+        {p: [{x: 400, y: 400}, {x: 600, y: 600}, {x: 400, y: 800}, {x: 200, y: 600}], color: "green"},
+        {p: [{x: 200, y: 600}, {x: 400, y: 800}, {x: 0, y: 800}], color: "yellow"},
+        {p: [{x: 800, y: 400}, {x: 800, y: 800}, {x: 400, y: 800}], color: "black"},
+
+    ]
+    var canvas = document.getElementById("qiqiao");
+    window.onload = function () {
+
+        canvas.width = 800;
+        canvas.height = 800;
+        var context = canvas.getContext("2d");
+
+        for(var i=0;i<qiqiao.length;i++){
+            draw(qiqiao[i].p,qiqiao[i].color,context);
+            canvas.addEventListener("click",detect(context),false);
+        }
+
+
+        function draw(position,color,cxt) {
+            cxt.beginPath();
+            cxt.moveTo(position[0].x,position[0].y);
+            for(var i=1;i<position.length;i++){
+                cxt.lineTo(position[i].x,position[i].y);
+            }
+            cxt.closePath();
+            cxt.shadowBlur = 5;
+            cxt.shadowColor = color;
+            cxt.fillStyle = color;
+            cxt.fill();
+
+        }
+    }
+    function detect(cxt) {
+        console.log(event);
+        console.log(canvas.getBoundingClientRect().top);
+        cxt.fillStyle = "red";
+        cxt.beginPath();
+        cxt.arc(canvas.getBoundingClientRect().left,canvas.getBoundingClientRect().top,10,0,2*Math.PI);
+        cxt.closePath();
+        cxt.fill();
+    }
+
+
+</script>
+</body>
+</html>

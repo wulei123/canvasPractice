@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>圈圈</title>
+
+</head>
+<body>
+<canvas id="circle" height="800px" width="800px">
+    别看了 你丫不支持
+</canvas>
+<script>
+    window.onload = function () {
+        var circle = document.getElementById("circle");
+        var cxt = circle.getContext("2d");
+        //context.arc(
+        // centerx,centery,radius,
+        // startingAngle,endiingAngle,
+        // anticlockwise = false顺时针
+        // )
+        cxt.lineWidth = 5;
+        cxt.strokeStyle = "green";
+        cxt.beginPath();
+        cxt.arc(300,300,200,0,1.5*Math.PI,false);
+
+        cxt.stroke();
+        cxt.beginPath();
+        cxt.arc(400,400,200,0,1.5*Math.PI,true);//后面如果有closePath会封口
+        cxt.stroke();
+        cxt.beginPath();
+        cxt.moveTo(0,0);
+        cxt.lineTo(100,100);
+        cxt.lineTo(200,100);
+
+        cxt.closePath();//不会封口 但是填充是还是会填充成封闭图形
+        cxt.stroke();
+        cxt.fillStyle = "green";
+        cxt.fill();
+
+
+    }
+
+</script>
+</body>
+</html>
